@@ -26,13 +26,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareViewModel() {
-        // Tampilkan value awal dari ViewModel
-        updateText(viewModel.total)
 
-        // Button listener
+        viewModel.total.observe(this) { total ->
+            updateText(total)
+        }
+
         findViewById<Button>(R.id.button_increment).setOnClickListener {
-            val updated = viewModel.incrementTotal()
-            updateText(updated)
+            viewModel.incrementTotal()
         }
     }
 }
